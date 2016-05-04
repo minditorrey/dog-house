@@ -1,0 +1,24 @@
+{
+  "name": "dog-house",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Mindi Torrey <minditorrey@me.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/minditorrey/dog-house",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-bootstrap": "^1.3.2",
+    "bootstrap": "^3.3.6",
+    "angular-ui-router": "^0.2.18",
+    "moment": "^2.13.0"
+  }
+}
