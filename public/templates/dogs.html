@@ -1,8 +1,11 @@
 <h2>Manage Dogs</h2>
 
-    <label class="filterSearch">Filter Search:</label>
-    <input ng-model='filterDogs'/>
-
+    <div class="row checkbox disabled radio"> 
+    <label class="filterSearch">
+        <input type="checkbox" ng-click="checkSort()" ng-model="weightSorted">
+        Only show dogs over 8 years old
+      </label>
+  </div>
 <div>	
 <table class="table">
   <thead "thead-inverse">

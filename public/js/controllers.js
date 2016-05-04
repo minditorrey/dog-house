@@ -21,12 +21,37 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
     DogSvc.getAll($scope.dogs)
     .then(res => {
         $scope.dogs = res.data;
+        $scope.allDogs = res.data;
         var dogs = $scope.dogs;
         console.log('get dogs', $scope.dogs);
     })
     .catch(err => {
         console.log('err:', err);
     });
+
+    $scope.weightSort = function() {
+    DogSvc.weightSort()
+    .then(res => {
+        console.log(res.data);
+        $scope.dogs = res.data;
+        $scope.sortedDogs = res.data;
+        var dogs= $scope.dogs;
+    })
+    }
+    $scope.checkSort = function(){
+
+if($scope.weightSorted){
+    if(!$scope.sortedDogs){
+        $scope.weightSort()
+        $scope.dogs = $scope.sortedDogs;
+    } else {
+        $scope.dogs = $scope.sortedDogs;
+    } 
+    }
+    else {
+        $scope.dogs = $scope.allDogs;
+    }
+    }
 
     $scope.removeDog = function(dog) {
         DogSvc.removeDog(dog);
@@ -49,6 +74,7 @@ app.controller('housesController', function($scope, $state, HouseSvc) {
     HouseSvc.getAll($scope.houses)
     .then(res => {
         $scope.houses = res.data;
+        $scope.allHouses = res.data;
         var houses = $scope.houses;
 
     })
@@ -56,11 +82,36 @@ app.controller('housesController', function($scope, $state, HouseSvc) {
         console.log('err:', err);
     });
 
+    $scope.priceSort = function() {
+    HouseSvc.priceSort()
+    .then(res => {
+        console.log(res.data);
+        $scope.houses = res.data;
+        $scope.sortedHouses = res.data;
+        var houses = $scope.houses;
+    })
+    }
+    $scope.checkSort = function(){
+
+if($scope.priceSorted){
+    if(!$scope.sortedHouses){
+        $scope.priceSort()
+        $scope.houses = $scope.sortedHouses;
+    } else {
+        $scope.houses = $scope.sortedHouses;
+    } 
+    }
+    else {
+        $scope.houses = $scope.allHouses;
+    }
+    }
+
     $scope.removeHouse = function(house) {
         HouseSvc.removeHouse(house);
         $scope.houses.splice(0, 1);
         location.reload;
     }
+
 
     $scope.addHouse = function(newHouse) {
         HouseSvc.create($scope.newHouse);

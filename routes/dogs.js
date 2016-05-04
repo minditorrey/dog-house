@@ -5,6 +5,8 @@ var Dog = require('../models/dog');
 
 //Do Crud Things:
 
+
+
 router.route('/')
 	.get((req, res) => {
 		Dog.find({}, (err, dogs) => {
@@ -27,8 +29,24 @@ router.route('/:id')
 		})
 	})
 
+// Dog
+// 	.find({})
+// 	.sort({color: black})
+// 	.exec((err, dogs) => {
+// 		res.status(err ? 400 : 200).send(err || dogs);
+// 	})
+
+router.route('/weightSort')
+	.get((req, res) => {
+		Dog
+			.find({age: {$gte: 8}})
+			.sort('-age')
+			.exec((err, dogs) => {
+				res.status(err ? 400 : 200).send(err || dogs);
+			});
+	})
 
 
-
+		
 
 module.exports = router;

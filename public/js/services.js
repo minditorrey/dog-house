@@ -17,6 +17,10 @@ app.service('HouseSvc', function($http) {
   this.create = house => {
   	return $http.post('/api/houses', house);
   }
+
+  this.priceSort = () => {
+  	return $http.get('api/houses/priceSort');
+  }
 })
 
 app.service('DogSvc', function($http) {
@@ -34,6 +38,9 @@ app.service('DogSvc', function($http) {
   	return $http.post('/api/dogs', dog);
   }
 
+  this.weightSort = () => {
+  	return $http.get('api/dogs/weightSort');
+  }
 
 })
 

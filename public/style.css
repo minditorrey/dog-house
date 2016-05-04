@@ -84,6 +84,11 @@ h3 {
 	margin-bottom: 3%;
 	margin-top: 2%;
 	color: #DF744A;
+	font-size: 18px;
+}
+
+.radio {
+margin-bottom: 2%;
 }
 
 .addDog {

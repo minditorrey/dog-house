@@ -1,7 +1,12 @@
 <h2>Manage Houses</h2>
 
-    <label class="filterSearch">Filter Search:</label>
-    <input ng-model='filterHouses'/>
+  	<div class="row checkbox disabled radio">	
+		<label class="filterSearch">
+    		<input type="checkbox" ng-click="checkSort()" ng-model="priceSorted">
+    		<!-- <input type="checkbox" ng-="priceSort()"> -->
+    		Only show lowest priced
+    	</label>
+	</div>
 
 
 <div>	

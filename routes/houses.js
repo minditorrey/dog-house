@@ -27,6 +27,22 @@ router.route('/:id')
 		})
 	})
 
+// House
+// 	.find({})
+// 	.sort({available: available})
+// 	.exec((err, houses) => {
+// 		res.status(err ? 400 : 200).send(err || houses);
+	// })
+router.route('/priceSort')
+	.get((req, res) => {
+		House
+			.find({price: {$lte: 35}})
+			.sort('-price')
+			.exec((err, houses) => {
+				res.status(err ? 400 : 200).send(err || houses);
+			})
+	})
+
 
 
 
