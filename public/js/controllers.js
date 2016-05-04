@@ -119,7 +119,13 @@ if($scope.priceSorted){
         location.reload;
     }
             
-    // $scope.filterHouses = 
+    // $scope.editHouse = function(house) {
+    //     HouseSvc.update(house);
+  
+    //     $scope.houseName = $scope.house.name;
+    //     console.log($scope.houseName);
+
+    // }
    
 
 });

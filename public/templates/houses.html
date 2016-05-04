@@ -10,10 +10,10 @@
 
 
 <div>	
-<table class="table">
-  <thead "thead-inverse">
+<table class="table table table-bordered">
+  <thead>
     <tr>
-      <th>#</th>
+      <th></th>
       <th> Name</th>
       <th> Location</th>
       <th> Size</th>
@@ -25,12 +25,12 @@
   </thead>
   <tbody>
     <tr ng-repeat="house in houses">
-      <th scope="row">1</th>
-      <td>{{house.name}}</td>
-      <td>{{house.location}}</td>
-      <td>{{house.size}}</td>
-      <td>{{house.price}}</td>
-      <td>{{house.availability}}</td>
+      <th scope="row"></th>
+      <td ng-model="houseName">{{house.name}}</td>
+      <td ng-model="houseLocation">{{house.location}}</td>
+      <td ng-model="houseSize">{{house.size}}</td>
+      <td ng-model="housePrice">{{house.price}}</td>
+      <td ng-model-"houseAvail">{{house.availability}}</td>
   
       <td><button class="btn btn-md btn-default glyphicon glyphicon-pencil editBtn" ng-click="editHouse(house)"></button></td>
       <td><button class="btn btn-md btn-default glyphicon glyphicon-trash removeBtn" ng-click="removeHouse(house)"></button></td>

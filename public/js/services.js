@@ -21,6 +21,11 @@ app.service('HouseSvc', function($http) {
   this.priceSort = () => {
   	return $http.get('api/houses/priceSort');
   }
+
+  this.update = house => {
+  	return $http.put('api/houses', house);
+  }
+
 })
 
 app.service('DogSvc', function($http) {
