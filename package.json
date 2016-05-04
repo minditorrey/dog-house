@@ -1,0 +1,33 @@
+{
+  "name": "dog-house",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "engines": {
+    "node": "5.10.1",
+    "npm": "3.8.3"
+    },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "postinstall": "bower i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minditorrey/dog-house.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minditorrey/dog-house/issues"
+  },
+  "homepage": "https://github.com/minditorrey/dog-house#readme",
+  "dependencies": {
+    "angular-ui-router": "^0.2.18",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.14",
+    "morgan": "^1.7.0"
+  }
+}

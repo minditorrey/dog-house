@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dog House</title>
+  <!-- <link rel="stylesheet" href="/bower_components/sweetalert/dist/sweetalert.css"> -->
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+    <!--<script src="/bower_components/ngSweetAlert/SweetAlert.min.js"></script>
+    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script> -->
+  <script src="/js/module.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/services.js"></script>
+</head>
+
+
+<body ng-app='doghouseApp' ng-controller='mainController'>
+    <div class="container-fluid mainDiv">
+        <h1>Who's in the dog house?</h1>
+       
+      
+        <div>
+            <button ng-show="isVisible" class="btn btn-lg btn-default toHouses" ng-click='toggleDiv($event)' ui-sref='houses'>View Houses</button>
+        </div>
+
+        <img id="splash" ng-show="isVisible" src="http://www.alderwoodlla.co.uk/wp-content/uploads/2014/02/doghouse.png">
+  
+<ui-view></ui-view>
+
+  
+
+  </div>
+</body>
+</html>

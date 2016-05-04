@@ -5,38 +5,30 @@ var Dog = require('../models/dog');
 
 //Do Crud Things:
 
-router.get('/', (req, res) => {
-	Dog.find({}, (err, dogs) => {
-		if(err) {
-			res.status(400).send(err);
-		} else {
-			res.send(dogs);
-		}
+router.route('/')
+	.get((req, res) => {
+		Dog.find({}, (err, dogs) => {
+			res.status(err ? 400 : 200).send(err || dogs);
+		});
+	})
+
+	.post((req, res) => {
+		var dog = new Dog(req.body);
+		dog.save((err, savedDog) => {
+		res.status(err ? 400 : 200).send(err || dog);
+		});	
 	});
-});
 
-router.post('/', (req, res) => {
-	var dog = new Dog(req.body);
-
-	dog.save((err, savedDog) => {
-		if(err) {
-			res.status(400).send(err);
-		} else {
-			res.send(savedDog);
-		}
-	});
-});
+router.route('/:id')
+	.delete((req, res) => {
+		var dog = (req.body)
+		Dog.findByIdAndRemove(req.params.id, (err, dog) => {
+			res.status(err ? 400 : 200).send(err);
+		})
+	})
 
 
-// router.get('/:category', (req, res) => {
-// 	Card.find({category: req.params.category}, (err, cards) => {
-// 		if(err) {
-// 			res.status(400).send(err);
-// 		} else {
-// 			res.send(cards);
-// 		}
-// 	})
 
-// })
+
 
 module.exports = router;

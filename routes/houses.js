@@ -5,38 +5,29 @@ var House = require('../models/house');
 
 //Do Crud Things:
 
-router.get('/', (req, res) => {
-	House.find({}, (err, houses) => {
-		if(err) {
-			res.status(400).send(err);
-		} else {
-			res.send(houses);
-		}
-	});
-});
+router.route('/')
+	.get((req, res) => {
+		House.find({}, (err, houses) => {
+			res.status(err ? 400 : 200).send(err || houses);
+		});
+	})
 
-router.post('/', (req, res) => {
-	var house = new House(req.body);
+	.post((req, res) => {
+		var house = new House(req.body);
+		house.save((err, savedHouse) => {
+			res.status(err ? 400 : 200).send(err || house);
+		})
+	})
 
-	house.save((err, savedHouse) => {
-		if(err) {
-			res.status(400).send(err);
-		} else {
-			res.send(savedHouse);
-		}
-	});
-});
+router.route('/:id')
+	.delete((req, res) => {
+		var house = (req.body)
+		House.findByIdAndRemove(req.params.id, (err, house) => {
+			res.status(err ? 400 : 200).send(err);
+		})
+	})
 
 
-// router.get('/:category', (req, res) => {
-// 	Card.find({category: req.params.category}, (err, cards) => {
-// 		if(err) {
-// 			res.status(400).send(err);
-// 		} else {
-// 			res.send(cards);
-// 		}
-// 	})
 
-// })
 
 module.exports = router;

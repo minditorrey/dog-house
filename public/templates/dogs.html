@@ -1,0 +1,77 @@
+<h2>Manage Dogs</h2>
+
+    <label class="filterSearch">Filter Search:</label>
+    <input ng-model='filterDogs'/>
+
+<div>	
+<table class="table">
+  <thead "thead-inverse">
+    <tr>
+      <th>#</th>
+      <th> Name</th>
+      <th> Owner</th>
+      <th> Owner Phone</th>
+      <th> Breed</th>
+      <th> Age</th>
+      <th> Color</th>
+      <th> Weight</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="dog in dogs">
+      <th scope="row">1</th>
+      <td>{{dog.name}}</td>
+      <td>{{dog.owner}}</td>
+      <td>{{dog.ownerPhone}}</td>
+      <td>{{dog.breed}}</td>
+      <td>{{dog.age}}</td>
+      <td>{{dog.color}}</td>
+      <td>{{dog.weight}}</td>
+      <td><button class="btn btn-md btn-default glyphicon glyphicon-pencil editBtn" ng-click="editDog(dog)"></button></td>
+      <td><button class="btn btn-md btn-default glyphicon glyphicon-trash removeBtn" ng-click="removeDog(dog)"></button></td>
+    </tr>
+  
+  </tbody>
+</table>
+</div>
+
+
+
+<div class="addIt">
+	<button class="btn btn-lg btn-default glyphicon glyphicon-plus addDog" ng-click="addDog(newDog)"></button>
+	<h3>Fill in all fields</h3>
+</div>
+
+<div class="form-group">
+<div class="row">
+	<div class="col-md-4">
+		<label>Dog Name</label>
+		<input class="form-control" ng-model='newDog.name' placeholder="Scruffy"/>
+		
+    <label>Owner Name</label>
+		<input class="form-control" ng-model='newDog.owner' placeholder="Jane Doe"/>
+		
+    <label>Owner Phone</label>
+		<input class="form-control" ng-model='newDog.ownerPhone' placeholder="123.555.2222"/>
+	</div>	
+	<div class="col-md-4">
+
+		<label>Breed</label>
+		<input class="form-control" ng-model='newDog.breed' placeholder="lab mix"/>
+
+		<label>Age</label>
+		<input class="form-control" ng-model='newDog.age'placeholder="6"/>
+    <label>Color</label>
+    <input class="form-control" ng-model='newDog.color'placeholder="brindle"/>
+    <label>Weight</label>
+    <input class="form-control" ng-model='newDog.weight'placeholder="54"/>
+	</div>
+
+</div>
+</div>
+		  	  		
+<div class="toHouses">
+	<button class="btn btn-lg btn-default toDogsBtn" ui-sref="houses">Back to Houses!</button>
+</div>

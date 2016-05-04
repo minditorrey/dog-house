@@ -1,0 +1,77 @@
+<h2>Manage Houses</h2>
+
+    <label class="filterSearch">Filter Search:</label>
+    <input ng-model='filterHouses'/>
+
+
+<div>	
+<table class="table">
+  <thead "thead-inverse">
+    <tr>
+      <th>#</th>
+      <th> Name</th>
+      <th> Location</th>
+      <th> Size</th>
+      <th> Price</th>
+      <th> Availability</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="house in houses">
+      <th scope="row">1</th>
+      <td>{{house.name}}</td>
+      <td>{{house.location}}</td>
+      <td>{{house.size}}</td>
+      <td>{{house.price}}</td>
+      <td>{{house.availability}}</td>
+  
+      <td><button class="btn btn-md btn-default glyphicon glyphicon-pencil editBtn" ng-click="editHouse(house)"></button></td>
+      <td><button class="btn btn-md btn-default glyphicon glyphicon-trash removeBtn" ng-click="removeHouse(house)"></button></td>
+    </tr>
+  
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div class="addIt">
+	<button class="btn btn-lg btn-default glyphicon glyphicon-plus addHouse" ng-click="addHouse(newHouse)"></button>
+	<h3>Fill in all fields</h3>
+</div>
+
+<div class="form-group">
+<div class="row">
+	<div class="col-md-4">
+		<label>House Name</label>
+		<input class="form-control" ng-model='newHouse.name' placeholder="Biscuit Lane"/>
+
+		<label>Location</label>
+		<input class="form-control" ng-model='newHouse.location' placeholder="Row 1"/>
+				<label>Availability</label>
+		<input class="form-control" ng-model='newHouse.availability' placeholder="available"/>
+	</div>	
+	<div class="col-md-4">
+
+		<label>Size</label>
+		<input class="form-control" ng-model='newHouse.size' placeholder="30"/>
+
+		<label>Price</label>
+		<input class="form-control" ng-model='newHouse.price'placeholder="35"/>
+	</div>
+
+</div>
+</div>
+		  	  		
+<div class="toDogs">
+	<button class="btn btn-lg btn-default toDogsBtn" ui-sref="dogs">To the Dogs!</button>
+</div>
+
+
+
+

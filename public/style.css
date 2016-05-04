@@ -1,0 +1,95 @@
+.mainDiv {
+	text-align: center;
+}
+
+body {
+	background-color: #FEDCD2;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.filterHouses {
+	margin-bottom: 3%;
+}
+
+.table {
+	color: #DF744A;
+}
+
+
+
+.editBtn {
+	background-color: #98C6BB;
+}
+
+.removeBtn {
+	background-color: #DF744A;
+}
+
+.toHouses {
+	background-color: #98C6BB;
+	color: #DF744A;
+}
+
+
+
+#splash {
+	margin-top: 5%;
+	width: 50%;
+
+}
+
+.filterHouses {
+	color: #DF744A;
+}
+h1 {
+	color: #DF744A;
+	font-size: 86px;
+	font-weight: bold;	
+}
+
+h2 {
+	color: #98C6BB;
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 3%;	
+}
+
+.addIt {
+	text-align: center;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.addHouse {
+	margin-bottom: 2%;
+	background-color: #DF744A;
+}
+
+h3 {
+	color: #98C6BB;
+}
+
+.form-group {
+	text-align: center;
+}
+
+.toDogsBtn {
+	margin-bottom: 2%;
+	background-color: #DF744A;
+	float: right;
+}
+
+.filterSearch {
+	margin-bottom: 3%;
+	margin-top: 2%;
+	color: #DF744A;
+}
+
+.addDog {
+	background-color: #DF744A;
+}
+/*.toDogs {
+	text-align: center;
+}*/
+
