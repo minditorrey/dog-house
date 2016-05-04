@@ -61,8 +61,12 @@ h2 {
 	font-size: 36px;
 	font-weight: bold;
 	margin-bottom: 3%;	
+	margin-top: 6%;
 }
 
+.well {
+	margin-top: 4%;
+}
 .addIt {
 	text-align: center;
 	margin-top: 5%;
@@ -101,11 +105,12 @@ margin-bottom: 2%;
 	margin-bottom: 2%;
 	background-color: #DF744A;
 	margin-left: 400px;
+	margin-left: 700px;
 }
 
 .addDog {
 	background-color: #DF744A;
-	margin-left: 400px;
+	margin-left: 700px;
 }
 /*.toDogs {
 	text-align: center;
