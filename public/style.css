@@ -27,6 +27,7 @@ body {
 
 .editBtn {
 	background-color: #98C6BB;
+	margin-top: 5%;
 }
 
 .removeBtn {
@@ -77,8 +78,14 @@ h2 {
 
 h3 {
 	color: #98C6BB;
+	margin-right: 68%
+
 }
 
+.home {
+	margin-bottom: 6%;
+	text-align: center;
+}
 .form-group {
 	text-align: center;
 }
@@ -88,6 +95,8 @@ h3 {
 	background-color: #DF744A;
 	float: right;
 	background-color: #98C6BB;
+	margin-top: 5%;
+
 }
 
 .filterSearch {
@@ -101,16 +110,18 @@ h3 {
 margin-bottom: 2%;
 }
 
-.addHouse {
-	margin-bottom: 2%;
+.addHouse {	
 	background-color: #DF744A;
-	margin-left: 400px;
-	margin-left: 700px;
+	margin-top: 3%;
+	margin-right: 4%;
+
 }
 
 .addDog {
 	background-color: #DF744A;
-	margin-left: 700px;
+	margin-top: 3%;
+	margin-right: 4%;
+	
 }
 /*.toDogs {
 	text-align: center;

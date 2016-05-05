@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var House = require('../models/house');
+var Dog = require('../models/dog');
 
 //Do Crud Things:
 
@@ -26,6 +27,11 @@ router.route('/:id')
 			res.status(err ? 400 : 200).send(err);
 		})
 	})
+	.put((req, res) => {
+		House.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }, (err, house) => {
+			res.status(err ? 400 : 200).send(err || house)
+		})
+	})
 
 // House
 // 	.find({})
@@ -43,7 +49,28 @@ router.route('/priceSort')
 			})
 	})
 
+router.put('/:houseName/dogs/:dogName', (req, res) => {
+	var houseId = req.params.houseId;
+	var dogId = req.params.dogId;
 
+		Dog.findOne({name: req.params.dogName}, (err, dog) => {
+			var thisDog = dog;
+	House.findOne({name: req.params.houseName}, (err, house) => {
+	// House.findById(houseId, (err, house) => {
+		console.log(house)
+		console.log("DOGE", dog)
+		house.dogs.push(dog._id);
+		var thisHouse = house;
+		if(err) return res.status(400).send(err);
+
+		console.log(house.dogs);
+		house.save((err, savedHouse) => {
+			res.status(err ? 400 : 200).send(err || savedHouse);
+		});
+		})
+	})
+	});
+// })
 
 
 module.exports = router;

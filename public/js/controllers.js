@@ -17,7 +17,6 @@ app.controller('mainController', function($scope) {
 });
 
 app.controller('dogsController', function($scope, $state, DogSvc) {
-    console.log("made it to dogs view");
     DogSvc.getAll($scope.dogs)
     .then(res => {
         $scope.dogs = res.data;
@@ -38,20 +37,20 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
         var dogs= $scope.dogs;
     })
     }
-    $scope.checkSort = function(){
 
-if($scope.weightSorted){
-    if(!$scope.sortedDogs){
-        $scope.weightSort()
-        $scope.dogs = $scope.sortedDogs;
-    } else {
-        $scope.dogs = $scope.sortedDogs;
-    } 
-    }
-    else {
-        $scope.dogs = $scope.allDogs;
-    }
-    }
+    $scope.checkSort = function(){
+        if($scope.weightSorted){
+            if(!$scope.sortedDogs){
+                $scope.weightSort()
+                $scope.dogs = $scope.sortedDogs;
+            } else {
+                $scope.dogs = $scope.sortedDogs;
+            } 
+            }
+            else {
+                $scope.dogs = $scope.allDogs;
+            }
+            }
 
     $scope.removeDog = function(dog) {
         DogSvc.removeDog(dog);
@@ -59,16 +58,35 @@ if($scope.weightSorted){
         location.reload;
     }
 
-    $scope.addDog = function(newDog) {
+    $scope.addDog = function(editFormDog) {
         console.log("click on addDog");
-        DogSvc.create($scope.newDog);
-        console.log('newDog', $scope.newDog);
-        $scope.newDog = null;
-        location.reload;
+        DogSvc.create($scope.editFormDog);
+        console.log('newDog', $scope.editFormDog);
+        $scope.editFormDog = null;
+       
     }
 
-    // $scope.filterDogs = 
+    $scope.editDog = (dog) => {
+        $scope.editFormDog = angular.copy(dog);
+    }
+
+    $scope.saveChanges = () => {
+        DogSvc.update($scope.editFormDog)
+        .then(res => {
+            $scope.dogs.forEach((dog, i) => {
+                if(dog._id === res.data._id) {
+                    $scope.dogs[i] = res.data;
+                }
+            })
+            $scope.editFormDog = null;
+        })
+    }
+
+    $scope.cancelEdit = () => {
+        $scope.editFormDog = null;
+    };
 });
+
 
 app.controller('housesController', function($scope, $state, HouseSvc) {
     HouseSvc.getAll($scope.houses)
@@ -113,20 +131,41 @@ if($scope.priceSorted){
     }
 
 
-    $scope.addHouse = function(newHouse) {
-        HouseSvc.create($scope.newHouse);
-        $scope.newHouse = null;
+    $scope.addHouse = function(editFormHouse) {
+        HouseSvc.create($scope.editFormHouse);
+        $scope.editFormHouse = null;
         location.reload;
     }
             
-    // $scope.editHouse = function(house) {
-    //     HouseSvc.update(house);
-  
-    //     $scope.houseName = $scope.house.name;
-    //     console.log($scope.houseName);
+    $scope.editHouse = (house) => {
+        $scope.editFormHouse = angular.copy(house);
+    }
 
-    // }
-   
+    $scope.saveChanges = () => {
+        HouseSvc.update($scope.editFormHouse)
+        .then(res => {
+            $scope.houses.forEach((house, i) => {
+                if(house._id === res.data._id) {
+                    $scope.houses[i] = res.data;
+                }
+            })
+            $scope.editFormHouse = null;
+        })
+    }
+
+    $scope.cancelEdit = () => {
+        $scope.editFormHouse = null;
+    };
+    
+    $scope.assignDog = () => {
+        HouseSvc.assignDog($scope.house, $scope.selectedDog)
+
+        .then (res => {
+            // house = $scope.house;
+            // selectedDog = $scope.selectedDog;
+
+        })
+    }
 
 });
 

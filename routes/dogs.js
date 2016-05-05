@@ -28,6 +28,12 @@ router.route('/:id')
 			res.status(err ? 400 : 200).send(err);
 		})
 	})
+	.put((req, res) => {
+		Dog.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }, (err, dog) => {
+			res.status(err ? 400 : 200).send(err || dog)
+		})
+	})
+	
 
 // Dog
 // 	.find({})

@@ -14,6 +14,10 @@ app.service('HouseSvc', function($http) {
   	return $http.delete(`/api/houses/${house._id}`)
   }
 
+  this.update = house => {
+    return $http.put(`/api/houses/${house._id}`, house)
+  }
+
   this.create = house => {
   	return $http.post('/api/houses', house);
   }
@@ -23,7 +27,12 @@ app.service('HouseSvc', function($http) {
   }
 
   this.update = house => {
-  	return $http.put('api/houses', house);
+  	return $http.put(`/api/houses/${house._id}`, house);
+  }
+
+  this.assignDog = (house, dog) => {
+    return $http.put(`/api/houses/${house}/dogs/${dog}`);
+    // return $http.put(`/api/houses/${house._id}/dogs/${dog._id}`);
   }
 
 })
@@ -38,6 +47,9 @@ app.service('DogSvc', function($http) {
   	return $http.delete(`/api/dogs/${dog._id}`)
   }
 
+  this.update = dog => {
+    return $http.put(`/api/dogs/${dog._id}`, dog)
+  }
 
   this.create = dog => {
   	return $http.post('/api/dogs', dog);
