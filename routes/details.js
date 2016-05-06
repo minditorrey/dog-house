@@ -7,12 +7,12 @@ var Dog = require('../models/dog');
 //Do Crud Things:
 
 router.route('/')
-	// .get((req, res) => {
-	// 	House
-	// 	.find({ availability: 'unavailable'})
-	// 	.exec((err, unavailableHouses) => {
-	// 		res.status(err ? 400 : 200).send(err || unavailableHouses);
-	// 	})
-	// })
+	.get((req, res) => {
+		House
+		.find({ availability: 'unavailable'})
+		.exec((err, unavailableHouses) => {
+			res.status(err ? 400 : 200).send(err || unavailableHouses);
+		})
+	})
 
 module.exports = router;
