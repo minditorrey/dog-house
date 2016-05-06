@@ -35,6 +35,8 @@ app.controller('detailsController', function($scope, OccupiedSvc, HouseSvc, DogS
         .then(res => {
         $scope.unavailableHouses = res.data;
         $scope.numOccupiedHouses = $scope.unavailableHouses.length;
+        $scope.totalIncome = $scope.unavailableHouses.reduce((total, house) => total + house.price, 0)
+            
     })
     .catch(err => {
         console.log('err:', err);
@@ -45,7 +47,7 @@ app.controller('detailsController', function($scope, OccupiedSvc, HouseSvc, DogS
         $scope.houses = res.data;
         $scope.numHouses = $scope.houses.length;
         
-        $scope.totalIncome = $scope.houses.reduce((total, house) => total + house.price, 0)
+        // $scope.totalIncome = $scope.houses.reduce((total, house) => total + house.price, 0)
             
     })
     .catch(err => {
