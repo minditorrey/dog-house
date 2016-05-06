@@ -2,6 +2,28 @@
 
 var app = angular.module('doghouseApp');
 
+
+app.service('DetailsSvc', function($http) {
+    
+    this.get = (house, dog) => {
+      return $http.get(`/api/occupied/${house}/dogs/${dog}`);
+  }
+
+})
+
+
+app.service('OccupiedSvc', function($http) {
+    
+  this.assignDog = (house, dog) => {
+      return $http.put(`/api/houses/${house}/dogs/${dog}`);
+  }
+  
+  this.getOccupied = () => {
+    return $http.get('/api/occupied');
+  }
+
+})
+
 app.service('HouseSvc', function($http) {
 
   // manage all item api calls
@@ -32,7 +54,6 @@ app.service('HouseSvc', function($http) {
 
   this.assignDog = (house, dog) => {
     return $http.put(`/api/houses/${house}/dogs/${dog}`);
-    // return $http.put(`/api/houses/${house._id}/dogs/${dog._id}`);
   }
 
 })

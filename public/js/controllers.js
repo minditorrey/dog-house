@@ -2,7 +2,9 @@
 
 var app = angular.module('doghouseApp');
 
-app.controller('mainController', function($scope) {
+
+
+app.controller('mainController', function($scope, HouseSvc) {
     $scope.isVisible = true; 
 
     $scope.toggleDiv = function(event) {
@@ -14,6 +16,58 @@ app.controller('mainController', function($scope) {
             $scope.isVisible = false;
         }
     };
+
+});
+app.controller('occupiedController', function($scope, OccupiedSvc) {
+    OccupiedSvc.getOccupied($scope.unavailableHouses)
+    .then(res => {
+        $scope.unavailableHouses = res.data;
+        console.log('unavailablehouses:', $scope.unavailableHouses);
+        console.log('$scope.unavailableHouses-name', $scope.unavailableHouses[0].name);
+        console.log('$scope.unavailableHouses-dogs', $scope.unavailableHouses[0].dogs);
+        console.log('dog name:', $scope.unavailableHouses[0].dogs.name); 
+
+    })
+    .catch(err => {
+        console.log('err:', err);
+    });
+});
+
+app.controller('detailsController', function($scope, OccupiedSvc, HouseSvc, DogSvc) {
+    OccupiedSvc.getOccupied($scope.unavailableHouses)
+        .then(res => {
+        $scope.unavailableHouses = res.data;
+        $scope.numOccupiedHouses = $scope.unavailableHouses.length;
+    })
+    .catch(err => {
+        console.log('err:', err);
+    });
+
+    HouseSvc.getAll()
+    .then(res => {
+        $scope.houses = res.data;
+        $scope.numHouses = $scope.houses.length;
+       
+        console.log('$scope.houses', $scope.houses);
+        console.log('$scope.houses.price:', $scope.houses[0].price);
+        
+        $scope.totalIncome = $scope.houses.reduce((total, house) => total + house.price, 0)
+            
+    })
+    .catch(err => {
+        console.log('err:', err);
+    });
+
+    DogSvc.getAll($scope.dogs)
+    .then(res => {
+        $scope.dogs = res.data;
+        $scope.numDogs = $scope.dogs.length
+        console.log('numdogs', $scope.numDogs);
+    })
+    .catch(err => {
+        console.log('err:', err);
+    });
+
 });
 
 app.controller('dogsController', function($scope, $state, DogSvc) {
@@ -63,6 +117,7 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
         DogSvc.create($scope.editFormDog);
         console.log('newDog', $scope.editFormDog);
         $scope.editFormDog = null;
+        //
        
     }
 
@@ -94,7 +149,7 @@ app.controller('housesController', function($scope, $state, HouseSvc) {
         $scope.houses = res.data;
         $scope.allHouses = res.data;
         var houses = $scope.houses;
-
+        console.log('length:', $scope.houses.length);
     })
     .catch(err => {
         console.log('err:', err);
@@ -110,8 +165,7 @@ app.controller('housesController', function($scope, $state, HouseSvc) {
     })
     }
     $scope.checkSort = function(){
-
-if($scope.priceSorted){
+        if($scope.priceSorted){
     if(!$scope.sortedHouses){
         $scope.priceSort()
         $scope.houses = $scope.sortedHouses;
@@ -159,13 +213,13 @@ if($scope.priceSorted){
     
     $scope.assignDog = () => {
         HouseSvc.assignDog($scope.house, $scope.selectedDog)
-
         .then (res => {
-            // house = $scope.house;
-            // selectedDog = $scope.selectedDog;
-
+            
         })
     }
+
+
+
 
 });
 

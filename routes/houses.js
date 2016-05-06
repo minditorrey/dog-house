@@ -17,8 +17,8 @@ router.route('/')
 		var house = new House(req.body);
 		house.save((err, savedHouse) => {
 			res.status(err ? 400 : 200).send(err || house);
-		})
-	})
+		});
+	});
 
 router.route('/:id')
 	.delete((req, res) => {
@@ -50,27 +50,38 @@ router.route('/priceSort')
 	})
 
 router.put('/:houseName/dogs/:dogName', (req, res) => {
-	var houseId = req.params.houseId;
-	var dogId = req.params.dogId;
+	var houseName = req.params.houseName;
+	var dogName = req.params.dogName;
 
 		Dog.findOne({name: req.params.dogName}, (err, dog) => {
 			var thisDog = dog;
-	House.findOne({name: req.params.houseName}, (err, house) => {
-	// House.findById(houseId, (err, house) => {
-		console.log(house)
-		console.log("DOGE", dog)
-		house.dogs.push(dog._id);
-		var thisHouse = house;
-		if(err) return res.status(400).send(err);
+			House.findOne({name: req.params.houseName}, (err, house) => {
+				house.dogs.push(dog._id);
+				var thisHouse = house;
+				if(err) return res.status(400).send(err);
+				house.save((err, savedHouse) => {
+					res.status(err ? 400 : 200).send(err || savedHouse);
+				})
+			})
+		}).populate('dogs');
 
-		console.log(house.dogs);
-		house.save((err, savedHouse) => {
-			res.status(err ? 400 : 200).send(err || savedHouse);
-		});
-		})
-	})
-	});
-// })
+		// Dog.findOne({name: req.params.dogName}, (err, dog) => {
+		// 	var thisDog = dog;
+		// 	House.findOne({name: req.params.houseName}, (err, house) => {
+		// 		house.dogs.push(dog._id);
+		// 		var thisHouse = house;
+		// 		if(err) return res.status(400).send(err);
+		// 		house.save((err, savedHouse) => {
+		// 			res.status(err ? 400 : 200).send(err || savedHouse);
+		// 		})
+		// 	})
+		// }).populate('dogs');
+});
+
+
+
+
+
 
 
 module.exports = router;
