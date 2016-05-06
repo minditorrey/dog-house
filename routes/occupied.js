@@ -9,7 +9,7 @@ var Dog = require('../models/dog');
 router.route('/')
 	.get((req, res) => {
 		House
-		.find({ availability: 'unavailable'})
+		.find({ availability: 'unavailable' })
 		.populate('dogs')
 		.exec((err, unavailableHouses) => {
 			res.status(err ? 400 : 200).send(err || unavailableHouses);

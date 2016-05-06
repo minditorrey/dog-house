@@ -22,10 +22,7 @@ app.controller('occupiedController', function($scope, OccupiedSvc) {
     OccupiedSvc.getOccupied($scope.unavailableHouses)
     .then(res => {
         $scope.unavailableHouses = res.data;
-        console.log('unavailablehouses:', $scope.unavailableHouses);
-        console.log('$scope.unavailableHouses-name', $scope.unavailableHouses[0].name);
-        console.log('$scope.unavailableHouses-dogs', $scope.unavailableHouses[0].dogs);
-        console.log('dog name:', $scope.unavailableHouses[0].dogs.name); 
+        console.log($scope.unavailableHouses);
 
     })
     .catch(err => {
@@ -47,9 +44,6 @@ app.controller('detailsController', function($scope, OccupiedSvc, HouseSvc, DogS
     .then(res => {
         $scope.houses = res.data;
         $scope.numHouses = $scope.houses.length;
-       
-        console.log('$scope.houses', $scope.houses);
-        console.log('$scope.houses.price:', $scope.houses[0].price);
         
         $scope.totalIncome = $scope.houses.reduce((total, house) => total + house.price, 0)
             
@@ -76,7 +70,7 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
         $scope.dogs = res.data;
         $scope.allDogs = res.data;
         var dogs = $scope.dogs;
-        console.log('get dogs', $scope.dogs);
+
     })
     .catch(err => {
         console.log('err:', err);
@@ -85,7 +79,7 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
     $scope.weightSort = function() {
     DogSvc.weightSort()
     .then(res => {
-        console.log(res.data);
+
         $scope.dogs = res.data;
         $scope.sortedDogs = res.data;
         var dogs= $scope.dogs;
@@ -113,9 +107,7 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
     }
 
     $scope.addDog = function(editFormDog) {
-        console.log("click on addDog");
         DogSvc.create($scope.editFormDog);
-        console.log('newDog', $scope.editFormDog);
         $scope.editFormDog = null;
         //
        
@@ -143,13 +135,12 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
 });
 
 
-app.controller('housesController', function($scope, $state, HouseSvc) {
+app.controller('housesController', function($scope, $state, HouseSvc, OccupiedSvc) {
     HouseSvc.getAll($scope.houses)
     .then(res => {
         $scope.houses = res.data;
         $scope.allHouses = res.data;
         var houses = $scope.houses;
-        console.log('length:', $scope.houses.length);
     })
     .catch(err => {
         console.log('err:', err);
@@ -158,10 +149,11 @@ app.controller('housesController', function($scope, $state, HouseSvc) {
     $scope.priceSort = function() {
     HouseSvc.priceSort()
     .then(res => {
-        console.log(res.data);
+
         $scope.houses = res.data;
         $scope.sortedHouses = res.data;
         var houses = $scope.houses;
+
     })
     }
     $scope.checkSort = function(){
@@ -189,7 +181,9 @@ app.controller('housesController', function($scope, $state, HouseSvc) {
         HouseSvc.create($scope.editFormHouse);
         $scope.editFormHouse = null;
         location.reload;
+  
     }
+
             
     $scope.editHouse = (house) => {
         $scope.editFormHouse = angular.copy(house);
@@ -211,14 +205,22 @@ app.controller('housesController', function($scope, $state, HouseSvc) {
         $scope.editFormHouse = null;
     };
     
+    //set this house to unavailable
     $scope.assignDog = () => {
+        if($scope.houses.dogs === -1) {
         HouseSvc.assignDog($scope.house, $scope.selectedDog)
         .then (res => {
-            
+            console.log("res.data:", res.data);
+            $scope.selectedDog = "";
+            $scope.house = "";
         })
+        } else {
+            alert("This house already has a dog in it!");
+            $scope.selectedDog = "";
+            $scope.house = "";
+        }
+
     }
-
-
 
 
 });

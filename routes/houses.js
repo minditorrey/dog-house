@@ -54,10 +54,11 @@ router.put('/:houseName/dogs/:dogName', (req, res) => {
 	var dogName = req.params.dogName;
 
 		Dog.findOne({name: req.params.dogName}, (err, dog) => {
-			var thisDog = dog;
+			// var thisDog = dog;
 			House.findOne({name: req.params.houseName}, (err, house) => {
 				house.dogs.push(dog._id);
-				var thisHouse = house;
+				// var thisHouse = house;
+				house.availability = "unavailable";
 				if(err) return res.status(400).send(err);
 				house.save((err, savedHouse) => {
 					res.status(err ? 400 : 200).send(err || savedHouse);

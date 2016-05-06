@@ -47,7 +47,7 @@
     <label>Dog Name</label>
     <input class="form-control" ng-model='selectedDog' placeholder="Scruffy"/>
     <button type="button" class="btn btn-default editBtn" ng-model='house.id'>Cancel</button>
-    <button class="btn btn-default editBtn" ng-click="nestDog()">Save</button>
+    <button class="btn btn-default editBtn">Save</button>
   </form>  
   <div class="well">
     <h4>{{selectedDog}} is now housed in {{house}}</h4>
@@ -108,7 +108,7 @@
 
 		<label>Price</label>
 		<input class="form-control" ng-model='editFormHouse.price'placeholder="35"/>
-	  <button class="btn btn-lg btn-default glyphicon glyphicon-plus addHouse" ng-click="addHouse(editFormHouse)"> New</button>
+	  <button type="button" class="btn btn-lg btn-default glyphicon glyphicon-plus addHouse" ng-click="addHouse(editFormHouse)"> New</button>
     <button type="button" class="btn btn-default editBtn" ng-click='cancelEdit()'>Cancel Edit</button>
   <button class="btn btn-default editBtn">Save Edit</button>  
   </div>
