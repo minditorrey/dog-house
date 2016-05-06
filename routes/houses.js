@@ -65,21 +65,25 @@ router.put('/:houseName/dogs/:dogName', (req, res) => {
 				})
 			})
 		}).populate('dogs');
-
-		// Dog.findOne({name: req.params.dogName}, (err, dog) => {
-		// 	var thisDog = dog;
-		// 	House.findOne({name: req.params.houseName}, (err, house) => {
-		// 		house.dogs.push(dog._id);
-		// 		var thisHouse = house;
-		// 		if(err) return res.status(400).send(err);
-		// 		house.save((err, savedHouse) => {
-		// 			res.status(err ? 400 : 200).send(err || savedHouse);
-		// 		})
-		// 	})
-		// }).populate('dogs');
 });
 
+router.put('/:houseName/:dogName', (req, res) => {
+	var houseName = req.params.houseName;
+	var dogName = req.params.dogName;
 
+		Dog.findOne({name: req.params.dogName}, (err, dog) => {
+			// var thisDog = dog;
+			House.findOne({name: req.params.houseName}, (err, house) => {
+				// var thisHouse = house;
+				house.availability = "available";
+				house.dogs = null;
+				if(err) return res.status(400).send(err);
+				house.save((err, savedHouse) => {
+					res.status(err ? 400 : 200).send(err || savedHouse);
+				})
+			})
+		}).populate('dogs');
+});
 
 
 

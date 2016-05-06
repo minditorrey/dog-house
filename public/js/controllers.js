@@ -221,7 +221,21 @@ app.controller('housesController', function($scope, $state, HouseSvc, OccupiedSv
             $scope.selectedDog = "";
             $scope.house = "";
         }
+    }
 
+    $scope.removeDog = () => {
+        if($scope.houses.dogs !== -1) {
+            HouseSvc.removeDog($scope.house, $scope.selectedDog)
+            .then (res => {
+                $scope.selectedDog = "";
+                $scope.house = "";
+            })
+        }
+        else {
+            alert("There is no dog in this house!");
+            $scope.selectedDog = "";
+            $scope.house = "";    
+        }
     }
 
 

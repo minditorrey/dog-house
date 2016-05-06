@@ -15,9 +15,13 @@ app.service('DetailsSvc', function($http) {
 app.service('OccupiedSvc', function($http) {
     
   this.assignDog = (house, dog) => {
-      return $http.put(`/api/houses/${house}/dogs/${dog}`);
+    return $http.put(`/api/houses/${house}/dogs/${dog}`);
   }
   
+  this.removeDog = (house, dog) => {
+    return $http.put(`/api/houses/${house}/${dog}`);
+  }
+
   this.getOccupied = () => {
     return $http.get('/api/occupied');
   }
@@ -54,6 +58,10 @@ app.service('HouseSvc', function($http) {
 
   this.assignDog = (house, dog) => {
     return $http.put(`/api/houses/${house}/dogs/${dog}`);
+  }
+
+    this.removeDog = (house, dog) => {
+    return $http.put(`/api/houses/${house}/${dog}`);
   }
 
 })

@@ -89,6 +89,23 @@
     <h4>{{selectedDog}} will be housed in {{house}}</h4>
   </div>
   <button class="btn btn-default btn-lg editBtn" ui-sref="occupied" ng-click="show">Show All Occupied Homes</button>
+
+<hr class="line">
+
+    <h2>Remove Dog from Home</h2>
+    <form ng-submit='removeDog()'>
+    <label>House Name</label>
+    <input class="form-control" ng-model='house' placeholder="Biscuit Lane"/>
+
+    <label>Dog Name</label>
+    <input class="form-control" ng-model='selectedDog' placeholder="Scruffy"/>
+    <button type="button" class="btn btn-default editBtn" ng-model='house.id'>Cancel</button>
+    <button class="btn btn-default editBtn">Save</button>
+  </form>  
+  <div class="well">
+    <h4>{{selectedDog}} will be removed from {{house}}</h4>
+  </div>
+  <button class="btn btn-default btn-lg editBtn" ui-sref="occupied" >Show All Occupied Homes</button>
 </div>
 </div>
 

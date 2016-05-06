@@ -39,6 +39,7 @@ body {
 	background-color: #98C6BB;
 	color: #DF744A;
 	margin-top: 5%;
+
 }
 
 
@@ -100,6 +101,7 @@ hr.line {
 	float: right;
 	background-color: #98C6BB;
 	margin-top: 5%;
+	margin-left: 2%;
 }
 
 .toStatsBtn {
