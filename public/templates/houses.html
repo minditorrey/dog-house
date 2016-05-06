@@ -37,9 +37,45 @@
 </table>
 </div>
 
+<div class="well" ng-model='editFormHouse'>
+<div class="addIt">
+  
+  <h3>Add a Dog House</h3>
+  
+</div>
+
+<div class="form-group">
+<div class="row">
+  <form ng-submit='saveChanges()'>
+  <div class="col-md-4 col-md-offset-2">
+    <label>House Name</label>
+    <input class="form-control" ng-model='editFormHouse.name' placeholder="Biscuit Lane"/>
+
+    <label>Location</label>
+    <input class="form-control" ng-model='editFormHouse.location' placeholder="Row 1"/>
+        <label>Availability</label>
+    <input class="form-control" ng-model='editFormHouse.availability' placeholder="available"/>
+  </div>  
+  <div class="col-md-4">
+
+    <label>Size</label>
+    <input class="form-control" ng-model='editFormHouse.size' placeholder="30"/>
+
+    <label>Price</label>
+    <input class="form-control" ng-model='editFormHouse.price'placeholder="35"/>
+    <button type="button" class="btn btn-lg btn-default glyphicon glyphicon-plus addHouse" ng-click="addHouse(editFormHouse)"> New</button>
+    <button type="button" class="btn btn-default editBtn" ng-click='cancelEdit()'>Cancel Edit</button>
+  <button class="btn btn-default editBtn">Save Edit</button>  
+  </div>
+</form>
+
+</div>
+
+<hr class="line">
+
 <div class="row home">
 <div class="col-sm-8 col-sm-offset-2">
-  <h2>Assign New Home</h2>
+  <h2>Assign Dog to Home</h2>
     <form ng-submit='assignDog()'>
     <label>House Name</label>
     <input class="form-control" ng-model='house' placeholder="Biscuit Lane"/>
@@ -50,71 +86,14 @@
     <button class="btn btn-default editBtn">Save</button>
   </form>  
   <div class="well">
-    <h4>{{selectedDog}} is now housed in {{house}}</h4>
+    <h4>{{selectedDog}} will be housed in {{house}}</h4>
   </div>
   <button class="btn btn-default btn-lg editBtn" ui-sref="occupied" ng-click="show">Show All Occupied Homes</button>
 </div>
 </div>
 
-<h2>List of Currently Occupied Homes</h2>
-
-<div class="well">  
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th> Dog</th>
-        <th> Room</th>
-        <th> Size</th>
-        <th> Price</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="house in houses">
-        <td ng-model="houseName">{{house.name}}</td>
-        <td ng-model="houseLocation">{{house.name}}</td>
-        <td ng-model="houseSize">{{house.size}}</td>
-        <td ng-model="housePrice">{{house.price}}</td>
-      </tr>
-    
-    </tbody>
-  </table>
-</div>
 
 
-<div class="well" ng-model='editFormHouse'>
-<div class="addIt">
-  
-	<h3>Add a Dog House</h3>
-  
-</div>
-
-<div class="form-group">
-<div class="row">
-  <form ng-submit='saveChanges()'>
-	<div class="col-md-4 col-md-offset-2">
-		<label>House Name</label>
-		<input class="form-control" ng-model='editFormHouse.name' placeholder="Biscuit Lane"/>
-
-		<label>Location</label>
-		<input class="form-control" ng-model='editFormHouse.location' placeholder="Row 1"/>
-				<label>Availability</label>
-		<input class="form-control" ng-model='editFormHouse.availability' placeholder="available"/>
-	</div>	
-	<div class="col-md-4">
-
-		<label>Size</label>
-		<input class="form-control" ng-model='editFormHouse.size' placeholder="30"/>
-
-		<label>Price</label>
-		<input class="form-control" ng-model='editFormHouse.price'placeholder="35"/>
-	  <button type="button" class="btn btn-lg btn-default glyphicon glyphicon-plus addHouse" ng-click="addHouse(editFormHouse)"> New</button>
-    <button type="button" class="btn btn-default editBtn" ng-click='cancelEdit()'>Cancel Edit</button>
-  <button class="btn btn-default editBtn">Save Edit</button>  
-  </div>
-</form>
-
-</div>
 
  <div>
   <button class="btn btn-lg btn-default toDogsBtn" ui-sref="dogs">To the Dogs!</button>
