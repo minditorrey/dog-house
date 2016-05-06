@@ -110,7 +110,9 @@ app.controller('dogsController', function($scope, $state, DogSvc) {
 
     $scope.addDog = function(editFormDog) {
         DogSvc.create($scope.editFormDog);
+        $scope.dogs.push($scope.editFormDog);
         $scope.editFormDog = null;
+
         //
        
     }
@@ -181,8 +183,8 @@ app.controller('housesController', function($scope, $state, HouseSvc, OccupiedSv
 
     $scope.addHouse = function(editFormHouse) {
         HouseSvc.create($scope.editFormHouse);
+        $scope.dogs.push($scope.editFormHouse);
         $scope.editFormHouse = null;
-        location.reload;
   
     }
 
